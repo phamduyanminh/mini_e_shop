@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_e_shop/widgets/product_item.dart';
 
 import '../model/product.dart';
 
@@ -40,6 +41,24 @@ class ProductsOverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Mini E-Shop"),
+      ),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(10),
+        itemCount: loadedProducts.length,
+        itemBuilder: (ctx, item) => ProductItem(
+          loadedProducts[item].id,
+          loadedProducts[item].title,
+          loadedProducts[item].imageUrl,
+        ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10),
+      ),
+    );
   }
 }
